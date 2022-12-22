@@ -1,0 +1,266 @@
+.root 
+{
+	-fx-background-color: rgb(16, 16, 16);
+	-fx-text-fill: white;
+}
+
+
+/*
+ * ToolBar
+ */
+.tool-bar, .menu-bar, .split-pane 
+{
+	-fx-background-color: rgb(24, 24, 24);
+	-fx-border-color: rgb(32, 32, 32);
+}
+
+
+.context-menu
+{
+	-fx-background-color: rgb(32, 32, 32);
+}
+
+
+/*
+ * Separator
+ */
+.separator:vertical,.separator:horizontal .line {
+	-fx-background-color: rgb(127, 127, 127);
+}
+
+
+/*
+ * Label
+ */
+ 
+.label
+{
+	-fx-text-fill: white;
+}
+
+
+/*
+ * Buttons
+ */
+.button,.toggle-button
+ {
+	-fx-color: rgb(0, 127, 255);
+	-fx-text-fill: white;
+	-fx-border-color: rgb(0, 48, 192);
+}
+
+
+.button:armed,.toggle-button:armed {
+	-fx-background-color: rgb(40, 192, 255);
+}
+
+
+.button:hover,.toggle-button:hover 
+{
+	-fx-color: rgb(0, 160, 255);
+}
+
+
+.toggle-button:selected,.button:pressed 
+{
+	-fx-color: rgb(0, 20, 160);
+}
+
+.text-warning {
+	-fx-text-fill: #ff8000;
+}
+
+
+/*
+ * CheckBox
+ */
+.check-box {
+	-fx-text-fill: white;
+}
+ 
+
+.check-box .box {
+	-fx-background-color: rgb(40, 40, 40);
+}
+
+
+.check-box:selected .box {
+	-fx-background-color: rgb(0, 127, 255);
+}
+
+
+.check-box:selected .mark {
+	-fx-background-color: white;
+}
+
+
+/*
+ * RadioButton
+ */
+.radio-button {
+	-fx-text-fill: white;	
+}
+
+ 
+.radio-button .radio {
+	-fx-background-color: rgb(0, 127, 255);
+}
+
+
+.radio-button:selected .dot {
+	-fx-background-color: white;
+}
+
+
+/*
+ * Lists
+ */
+.list-view
+{
+	-fx-background-color: rgb(32, 32, 32);
+}
+
+
+.list-cell
+{
+	-fx-background-color: rgb(32, 32, 32);
+	-fx-text-fill: white;
+}
+
+
+.list-cell:even
+{
+	-fx-background-color: rgb(40, 40, 40);
+}
+
+
+.list-cell:selected
+{
+	-fx-background-color: dodgerblue;
+}
+
+
+/*
+ * TextField TextArea
+ */
+.text-field, .text-area .content
+{
+	-fx-background-color: rgb(40, 40, 40);
+	-fx-text-fill: white;
+}
+
+
+.text-area
+{
+	-fx-text-fill: white;
+}
+
+
+/*
+ * ScrollPane
+ */
+.scroll-bar
+{
+	-fx-background-color: rgb(32, 32, 32);
+}
+
+
+.scroll-bar .thumb
+{
+	-fx-background-color: rgb(60, 60, 60);
+}
+
+
+/*
+ * ComboBox/ColorPicker
+ */
+.combo-box .list-cell:selected
+{
+	-fx-background-color: rgb(48, 48, 48);
+}
+ 
+ 
+.combo-box-base
+{
+ 	-fx-background-color: rgb(40, 40, 40);
+}
+ 
+ 
+.combo-box .list-cell:hover
+{
+	-fx-background-color: dodgerblue;
+}
+
+
+.combo-box-base .arrow-button {
+	-fx-background-color: rgb(0, 127, 255);
+}
+
+
+.combo-box-base .arrow {
+	-fx-background-color: rgb(127, 255, 255);
+}
+
+
+/*
+ * Spinner
+ */
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+	-fx-body-color: rgb(0, 127, 255);
+	-fx-color: rgb(0, 127, 255);
+	
+}
+
+
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+	-fx-background-color: rgb(127, 255, 255);
+}
+
+
+/*
+ * TabPane
+ */
+.tab
+{
+ 	-fx-background-color: rgb(16, 16, 16);
+}
+
+
+.tab-header-background
+{
+	-fx-background-color: rgb(24, 24, 24);
+}
+ 
+
+.tab .tab-label
+{
+ 	-fx-text-fill: white;
+}
+ 
+ 
+.tab .tab-close-button
+{
+ 	-fx-background-color: red;
+}
+
+
+/*
+ * TitledPane
+ */
+
+.content {
+	-fx-background-color: rgb(16, 16, 16);
+	-fx-text-fill: white;	
+}
+
+
+.title {
+	-fx-background-color: rgb(0, 127, 255);	
+}
+
+
+.title .text {
+	-fx-text-fill: white;
+}

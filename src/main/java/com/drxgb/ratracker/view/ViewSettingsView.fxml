@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="12.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drxgb.ratracker.controller.ViewSettingsController">
+   <children>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab closable="false" text="Game Info">
+          	<VBox fx:id="paneGameInfo" spacing="12.0">
+                  <padding>
+                     <Insets bottom="12.0" left="8.0" right="8.0" top="12.0" />
+                  </padding>
+                  <children>
+                     <GridPane hgap="12.0">
+                       <columnConstraints>
+                         <ColumnConstraints hgrow="NEVER" />
+                         <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                           <Label text="Icon Display:" />
+                           <RadioButton mnemonicParsing="false" text="Left" GridPane.columnIndex="1">
+                              <toggleGroup>
+                                 <ToggleGroup fx:id="infoIconDisplay" />
+                              </toggleGroup>
+                           </RadioButton>
+                           <RadioButton mnemonicParsing="false" text="Right" toggleGroup="$infoIconDisplay" GridPane.columnIndex="2" />
+                           <RadioButton mnemonicParsing="false" text="Hidden" toggleGroup="$infoIconDisplay" GridPane.columnIndex="3" />
+                        </children>
+                     </GridPane>
+                     <GridPane>
+                       <columnConstraints>
+                         <ColumnConstraints hgrow="ALWAYS" />
+                         <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="ALWAYS" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints vgrow="SOMETIMES" />
+                         <RowConstraints prefHeight="140.0" vgrow="NEVER" />
+                         <RowConstraints vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                           <Label text="Show Fields:" />
+                           <ListView GridPane.rowIndex="1" />
+                           <ListView GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                              <children>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Up">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_up.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Add">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_left.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic></Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Remove">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_right.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic></Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Down">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_down.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                              </children>
+                              <padding>
+                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                              </padding>
+                           </VBox>
+                        </children>
+                     </GridPane>
+                  </children></VBox>
+          </Tab>
+          <Tab closable="false" text="User Stats">
+          	<VBox fx:id="paneUserStats" spacing="12.0">
+                  <children>
+                     <GridPane hgap="12.0">
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <Label text="Avatar Display:" />
+                           <RadioButton mnemonicParsing="false" text="Left" GridPane.columnIndex="1">
+                              <toggleGroup>
+                                 <ToggleGroup fx:id="avatarDisplay" />
+                              </toggleGroup>
+                           </RadioButton>
+                           <RadioButton mnemonicParsing="false" text="Right" toggleGroup="$avatarDisplay" GridPane.columnIndex="2" />
+                           <RadioButton mnemonicParsing="false" text="Hidden" toggleGroup="$avatarDisplay" GridPane.columnIndex="3" />
+                        </children>
+                     </GridPane>
+                     <GridPane>
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="ALWAYS" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="ALWAYS" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints prefHeight="140.0" vgrow="NEVER" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <Label text="Show Fields:" />
+                           <ListView GridPane.rowIndex="1" />
+                           <ListView GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <children>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Up">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_up.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Add">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_left.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Remove">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_right.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Down">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_down.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                              </children>
+                              <padding>
+                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                              </padding>
+                           </VBox>
+                        </children>
+                     </GridPane>
+                  </children>
+                  <padding>
+                     <Insets bottom="12.0" left="8.0" right="8.0" top="12.0" />
+                  </padding></VBox>
+          </Tab>
+          <Tab closable="false" text="Unlocked Achievements">
+          	<VBox fx:id="paneUnlockedAchievements" spacing="12.0">
+                  <children>
+                     <GridPane hgap="12.0" vgap="8.0">
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <Label text="Badge Display:" />
+                           <RadioButton mnemonicParsing="false" text="Left" GridPane.columnIndex="1">
+                              <toggleGroup>
+                                 <ToggleGroup fx:id="unlockedBadgeDisplay" />
+                              </toggleGroup>
+                           </RadioButton>
+                           <RadioButton mnemonicParsing="false" text="Right" toggleGroup="$unlockedBadgeDisplay" GridPane.columnIndex="2" />
+                           <RadioButton mnemonicParsing="false" text="Hidden" toggleGroup="$unlockedBadgeDisplay" GridPane.columnIndex="3" />
+                           <Label text="Show Achievements:" GridPane.rowIndex="1" />
+                           <Spinner prefWidth="64.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                        </children>
+                     </GridPane>
+                     <GridPane>
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="ALWAYS" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="ALWAYS" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints prefHeight="140.0" vgrow="NEVER" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <Label text="Show Fields:" />
+                           <ListView GridPane.rowIndex="1" />
+                           <ListView GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <children>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Up">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_up.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Add">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_left.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Remove">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_right.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Down">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_down.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                              </children>
+                              <padding>
+                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                              </padding>
+                           </VBox>
+                        </children>
+                     </GridPane>
+                  </children>
+                  <padding>
+                     <Insets bottom="12.0" left="8.0" right="8.0" top="12.0" />
+                  </padding></VBox>
+          </Tab>
+          <Tab closable="false" text="Next Achievement">
+          	<VBox fx:id="paneNextAchievement" spacing="12.0">
+                  <children>
+                     <GridPane hgap="12.0" vgap="8.0">
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <Label text="Badge Display:" />
+                           <RadioButton mnemonicParsing="false" text="Left" GridPane.columnIndex="1">
+                              <toggleGroup>
+                                 <ToggleGroup fx:id="nextBadgeDisplay" />
+                              </toggleGroup>
+                           </RadioButton>
+                           <RadioButton mnemonicParsing="false" text="Right" toggleGroup="$nextBadgeDisplay" GridPane.columnIndex="3" />
+                           <RadioButton mnemonicParsing="false" text="Hidden" toggleGroup="$nextBadgeDisplay" GridPane.columnIndex="4" />
+                           <Label text="Won % Display:" GridPane.rowIndex="1" />
+                           <RadioButton mnemonicParsing="false" text="Progress bar" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                              <toggleGroup>
+                                 <ToggleGroup fx:id="nextWonDisplay" />
+                              </toggleGroup>
+                           </RadioButton>
+                           <RadioButton mnemonicParsing="false" text="Only text" toggleGroup="$nextWonDisplay" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                        </children>
+                     </GridPane>
+                     <GridPane>
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="ALWAYS" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="ALWAYS" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints prefHeight="140.0" vgrow="NEVER" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <Label text="Show Fields:" />
+                           <ListView GridPane.rowIndex="1" />
+                           <ListView GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <children>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Up">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_up.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Add">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_left.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Remove">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_right.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Down">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_down.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                              </children>
+                              <padding>
+                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                              </padding>
+                           </VBox>
+                        </children>
+                     </GridPane>
+                  </children>
+                  <padding>
+                     <Insets bottom="12.0" left="8.0" right="8.0" top="12.0" />
+                  </padding></VBox>
+          </Tab>
+          <Tab closable="false" text="Completed Games">
+          	<VBox fx:id="paneCompletedGames" spacing="12.0">
+                  <children>
+                     <GridPane hgap="12.0" vgap="8.0">
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="NEVER" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <Label text="Icon Display:" />
+                           <RadioButton mnemonicParsing="false" text="Left" GridPane.columnIndex="1">
+                              <toggleGroup>
+                                 <ToggleGroup fx:id="completedIconDisplay" />
+                              </toggleGroup>
+                           </RadioButton>
+                           <RadioButton mnemonicParsing="false" text="Right" toggleGroup="$completedIconDisplay" GridPane.columnIndex="2" />
+                           <RadioButton mnemonicParsing="false" text="Hidden" toggleGroup="$completedIconDisplay" GridPane.columnIndex="3" />
+                           <Label text="Show Games:" GridPane.rowIndex="1" />
+                           <Spinner prefWidth="64.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                           <Label text="Won % Display:" GridPane.rowIndex="2" />
+                           <CheckBox mnemonicParsing="false" text="Show only Mastered Games" GridPane.columnSpan="4" GridPane.rowIndex="4" />
+                           <RadioButton mnemonicParsing="false" text="Progress bar" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                              <toggleGroup>
+                                 <ToggleGroup fx:id="wonDisplay" />
+                              </toggleGroup></RadioButton>
+                           <RadioButton mnemonicParsing="false" text="Only text" toggleGroup="$wonDisplay" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+                        </children>
+                     </GridPane>
+                     <GridPane>
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="ALWAYS" />
+                           <ColumnConstraints hgrow="NEVER" />
+                           <ColumnConstraints hgrow="ALWAYS" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints vgrow="SOMETIMES" />
+                           <RowConstraints prefHeight="140.0" vgrow="NEVER" />
+                           <RowConstraints vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <Label text="Show Fields:" />
+                           <ListView GridPane.rowIndex="1" />
+                           <ListView GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                           <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <children>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Up">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_up.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Add">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_left.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Remove">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_right.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                                 <Button alignment="TOP_LEFT" mnemonicParsing="false" prefWidth="96.0" text="Down">
+                                    <graphic>
+                                       <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@/resources/gui/arrow_down.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                 </Button>
+                              </children>
+                              <padding>
+                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                              </padding>
+                           </VBox>
+                        </children>
+                     </GridPane>
+                  </children>
+                  <padding>
+                     <Insets bottom="12.0" left="8.0" right="8.0" top="12.0" />
+                  </padding></VBox>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <HBox alignment="TOP_RIGHT" spacing="8.0">
+         <children>
+            <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnOkAction" prefWidth="80.0" text="OK" />
+            <Button cancelButton="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnCancelAction" prefWidth="80.0" text="Cancel" />
+            <Button fx:id="btnApply" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnApplyAction" prefWidth="80.0" text="Apply" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+   </padding>
+</VBox>

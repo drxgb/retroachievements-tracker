@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="12.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drxgb.ratracker.controller.PhrasesController">
+   <children>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab closable="false" text="Game Info">
+               <GridPane fx:id="paneGameInfo" hgap="12.0" vgap="4.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" />
+                     <ColumnConstraints hgrow="ALWAYS" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints minHeight="0.0" vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                  </rowConstraints>
+                  <children>
+                     <Label text="Title" />
+                     <Label text="Console" GridPane.rowIndex="1" />
+                     <Label text="Publisher" GridPane.rowIndex="2" />
+                     <Label text="Developer" GridPane.rowIndex="3" />
+                     <Label text="Released" GridPane.rowIndex="5" />
+                     <TextField GridPane.columnIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     <Label text="Genre" GridPane.rowIndex="4" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  </children>
+                  <padding>
+                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                  </padding>
+               </GridPane>
+          </Tab>
+          <Tab closable="false" text="User Stats">
+               <GridPane fx:id="paneUserStats" hgap="12.0" vgap="4.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" />
+                     <ColumnConstraints hgrow="ALWAYS" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                  </rowConstraints>
+                  <children>
+                     <Label text="User" />
+                     <Label text="Total Points" GridPane.rowIndex="1" />
+                     <Label text="Total True Points" GridPane.rowIndex="2" />
+                     <Label text="Motto" GridPane.rowIndex="3" />
+                     <Label text="Rank" GridPane.rowIndex="4" />
+                     <Label text="Presence Message" GridPane.rowIndex="5" />
+                     <Label text="Achievements" GridPane.rowIndex="6" />
+                     <Label text="Hardcore Achievements" GridPane.rowIndex="7" />
+                     <Label text="Score" GridPane.rowIndex="8" />
+                     <Label text="Hardcore Score" GridPane.rowIndex="9" />
+                     <Label text="Awards" GridPane.rowIndex="10" />
+                     <TextField GridPane.columnIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  </children>
+                  <padding>
+                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                  </padding>
+               </GridPane>
+          </Tab>
+          <Tab closable="false" text="Unlocked Achievements">
+               <GridPane fx:id="paneUnlockedAchievements" hgap="12.0" vgap="4.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" />
+                     <ColumnConstraints hgrow="ALWAYS" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                  </rowConstraints>
+                  <children>
+                     <Label text="Game" />
+                     <Label text="Title" GridPane.rowIndex="1" />
+                     <Label text="Description" GridPane.rowIndex="2" />
+                     <Label text="Points" GridPane.rowIndex="3" />
+                     <Label text="Awarded at" GridPane.rowIndex="4" />
+                     <TextField GridPane.columnIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  </children>
+                  <padding>
+                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                  </padding>
+               </GridPane>
+          </Tab>
+          <Tab closable="false" text="Next Achievement">
+               <GridPane fx:id="paneNextAchievement" hgap="12.0" vgap="4.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" />
+                     <ColumnConstraints hgrow="ALWAYS" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                  </rowConstraints>
+                  <children>
+                     <Label text="Title" />
+                     <Label text="Description" GridPane.rowIndex="1" />
+                     <Label text="Points" GridPane.rowIndex="2" />
+                     <Label text="True Points" GridPane.rowIndex="3" />
+                     <Label text="Won by" GridPane.rowIndex="4" />
+                     <Label text="Won %" GridPane.rowIndex="5" />
+                     <TextField GridPane.columnIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  </children>
+                  <padding>
+                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                  </padding>
+               </GridPane>
+          </Tab>
+          <Tab closable="false" text="Completed Games">
+               <GridPane fx:id="paneCompletedGames" hgap="12.0" vgap="4.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="SOMETIMES" />
+                     <ColumnConstraints hgrow="ALWAYS" />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                     <RowConstraints vgrow="NEVER" />
+                  </rowConstraints>
+                  <children>
+                     <Label text="Title" />
+                     <Label text="Console" GridPane.rowIndex="1" />
+                     <Label text="Completion" GridPane.rowIndex="2" />
+                     <Label text="Won %" GridPane.rowIndex="3" />
+                     <Label text="Hardcore" GridPane.rowIndex="4" />
+                     <TextField GridPane.columnIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  </children>
+                  <padding>
+                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                  </padding>
+               </GridPane>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <HBox alignment="TOP_RIGHT" spacing="8.0">
+         <children>
+            <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnOkAction" prefWidth="80.0" text="OK" />
+            <Button cancelButton="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnCancelAction" prefWidth="80.0" text="Cancel" />
+            <Button fx:id="btnApply" disable="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnApplyAction" prefWidth="80.0" text="Apply" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+   </padding>
+</VBox>

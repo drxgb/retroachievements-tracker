@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="24.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drxgb.ratracker.controller.GeneralSettingsController">
+   <children>
+      <GridPane fx:id="paneSettings" hgap="8.0" vgap="8.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="NEVER" />
+          <ColumnConstraints hgrow="NEVER" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="NEVER" />
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Theme:" />
+            <ComboBox fx:id="cbTheme" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" />
+            <Label text="Auto Refresh Interval:" GridPane.rowIndex="2" />
+            <Spinner fx:id="spnAutoRefreshInterval" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="seconds" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="lblWarning" text="WARNING: too small time amounts can cause a slow performance." textFill="#ff8000" visible="false" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label text="Date Format:" GridPane.rowIndex="1" />
+            <VBox GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <children>
+                  <TextField fx:id="txtDateFormat" />
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="All these patterns you can see at" />
+                        <Hyperlink fx:id="lnkSdf" onAction="#onLnkSdfAction" text="java.text.SimpleDateFormat" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      <HBox alignment="TOP_RIGHT" spacing="8.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#onBtnOkAction" prefWidth="80.0" text="OK" />
+            <Button mnemonicParsing="false" onAction="#onBtnCancelAction" prefWidth="80.0" text="Cancel" />
+            <Button fx:id="btnApply" disable="true" mnemonicParsing="false" onAction="#onBtnApplyAction" prefWidth="80.0" text="Apply" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+   </padding>
+</VBox>

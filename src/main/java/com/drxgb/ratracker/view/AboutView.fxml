@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drxgb.ratracker.controller.AboutController">
+   <children>
+      <VBox alignment="TOP_CENTER">
+         <children>
+            <ImageView fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/resources/favicon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="156.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/resources/drxgb.png" />
+               </image>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+         </padding>
+      </VBox>
+      <Separator orientation="VERTICAL" />
+      <VBox layoutX="18.0" layoutY="18.0">
+         <padding>
+            <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label fx:id="lblAppName" alignment="TOP_LEFT">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Separator />
+            <VBox VBox.vgrow="ALWAYS">
+               <children>
+                  <GridPane hgap="16.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Version:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="Developer:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="27.0" text="Java Build Version:" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="44.0" text="Last Update:" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblVersion" GridPane.columnIndex="1" />
+                        <Label text="Dr.XGB" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lblJavaVersion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Aug 15th, 2022" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="JavaFX Version:" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblJavaFxVersion" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <Separator />
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <Label text="© 2022 - Dr.XGB" />
+                  <Hyperlink onAction="#onHlkAuthorSiteAction" text="https://github.com/drxgb" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

@@ -1,0 +1,130 @@
+
+{
+    "general": {},
+    "view": {
+        "gameInfo": {
+            "display": 0,
+            "fields": [
+                0,
+                1,
+                4
+            ],
+            "layout": {
+                "font": "System",
+                "size": 24.0,
+                "background": "#ff00ffff",
+                "foreground": "#ffffffff"
+            }
+        },
+        "userStats": {
+            "display": 0,
+            "fields": [
+                0,
+                1,
+                4,
+                6,
+                8,
+                10
+            ],
+            "layout": {
+                "font": "System",
+                "size": 24.0,
+                "background": "#ff00ffff",
+                "foreground": "#ffffffff"
+            }
+        },
+        "unlockedAchievements": {
+            "display": 0,
+            "showAchievements": 5,
+            "fields": [
+                1,
+                0,
+                2
+            ],
+            "layout": {
+                "font": "System",
+                "size": 24.0,
+                "background": "#ff00ffff",
+                "foreground": "#ffffffff"
+            }
+        },
+        "nextAchievement": {
+            "display": 0,
+            "wonByDisplay": 0,
+            "fields": [
+                0,
+                1,
+                2,
+                5
+            ],
+            "layout": {
+                "font": "System",
+                "size": 24.0,
+                "background": "#ff00ffff",
+                "foreground": "#ffffffff"
+            }
+        },
+        "completedGames": {
+            "display": 1,
+            "showGames": 10,
+            "wonByDisplay": 0,
+            "mastered": true,
+            "fields": [
+                0,
+                1,
+                4
+            ],
+            "layout": {
+                "font": "System",
+                "size": 24.0,
+                "background": "#ff00ffff",
+                "foreground": "#ffffffff"
+            }
+        }
+    },
+    "phrases": {
+        "gameInfo": {
+            "title": "Title",
+            "console": "Console",
+            "publisher": "Publisher",
+            "developer": "Developer",
+            "genre": "Genre",
+            "released": "Released"
+        },
+        "userStats": {
+            "user": "User",
+            "totalPoints": "Total Points",
+            "totalTruePoints": "Total True Points",
+            "motto": "Motto",
+            "rank": "Rank",
+            "presenceMessage": "Presence Message",
+            "achievements": "Achievements",
+            "hardcoreAchievements": "Hardcore Achievements",
+            "score": "Score",
+            "hardcoreScore": "Hardcore Score",
+            "awards": "Awards"
+        },
+        "unlockedAchievements": {
+            "game": "Game",
+            "title": "Title",
+            "description": "Description",
+            "points": "Points",
+            "awardedAt": "Awarded at"
+        },
+        "nextAchievement": {
+            "title": "Title",
+            "description": "Description",
+            "points": "Points",
+            "truePoints": "True Points",
+            "wonBy": "Won by",
+            "wonPercent": "Won %"
+        },
+        "completedGames": {
+            "title": "Title",
+            "console": "Console",
+            "completion": "Completion",
+            "wonPercent": "Won %",
+            "hardcore": "HARDCORE!"
+        }
+    }
+}

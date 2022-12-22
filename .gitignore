@@ -1,0 +1,8 @@
+.settings/
+dist/
+log/
+models/
+target/
+
+.project
+session.properties
