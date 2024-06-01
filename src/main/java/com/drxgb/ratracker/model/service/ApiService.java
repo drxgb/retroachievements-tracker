@@ -67,22 +67,22 @@ public class ApiService implements TrackerService
 		userSummary = (JsonObject) api.consume("API_GetUserSummary.php", params);
 		
 		// GameInfo and UserProgress
-		final String lastGameId = userSummary.getString("LastGameID");
-		params.put(ApiParam.GAME, lastGameId);
+		final int lastGameId = userSummary.getInt("LastGameID");
+		params.put(ApiParam.GAME, String.valueOf(lastGameId));
 		params.put(ApiParam.USER, api.getSession().getUserName());	
 		gameInfoAndUserProgress = (JsonObject) api.consume("API_GetGameInfoAndUserProgress.php", params);
 		params.remove(ApiParam.GAME);
 		
 		// Completed Games
-		completedGames = (JsonArray) api.consume("API_GetUserCompletedGames.php", params);
-		
-		// UserProgress
+		completedGames = (JsonArray) api.consume("API_GetUserCompletedGames.php", params);		
 		params.put(
 				ApiParam.ID,
 				ParameterBuilder.listToCsv(
 						completedGames.getValuesAs(JsonObject.class), 
-						obj -> obj.getString("GameID"))
+						obj -> obj.getInt("GameID"))
 				);
+
+		// UserProgress
 		userProgress = (JsonObject) api.consume("API_GetUserProgress.php", params);
 		params.clear();
 		

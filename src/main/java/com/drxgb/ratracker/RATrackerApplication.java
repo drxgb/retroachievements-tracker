@@ -44,7 +44,7 @@ public class RATrackerApplication extends Application
 	/**
 	 * The current application version.
 	 */
-	public static final String VERSION = "1.0.0";
+	public static final String VERSION = "1.0.1";
 	
 	/**
 	 * RetroAchievements web link.
@@ -183,7 +183,7 @@ public class RATrackerApplication extends Application
 			Styles styles = Styles.getInstance()
 					.load("resources/style/")
 					.selectStyle(theme);
-			FXMLLoader mainLoader = new FXMLLoader(appClass.getResource("view/MainView.fxml"));
+			FXMLLoader mainLoader = new FXMLLoader(appClass.getResource("/resources/view/MainView.fxml"));
 			Pane root = (VBox) mainLoader.load();
 			InputStream icon = appClass.getResourceAsStream("/resources/favicon.png");
 			MainController mainController = mainLoader.getController();			
@@ -209,7 +209,7 @@ public class RATrackerApplication extends Application
 			// Janela do login
 			Stage loginStage = StageFactory.openWindow(
 					stage,
-					appClass.getResource("view/LoginView.fxml"),
+					appClass.getResource("/resources/view/LoginView.fxml"),
 					"Login"
 			);
 			FXMLLoader loginLoader = (FXMLLoader) loginStage.getScene().getUserData();

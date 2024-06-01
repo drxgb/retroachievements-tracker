@@ -16,9 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBoxBase;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -183,10 +185,20 @@ public abstract class SettingsController implements Initializable
 				txt.textProperty()
 					.addListener((obs, oldValue, newValue) -> activateApplyButton());
 			}
-			
+			if (node instanceof CheckBox)
+			{
+				CheckBox chk = (CheckBox) node;
+				chk.selectedProperty()
+					.addListener((obs, oldValue, newValue) -> activateApplyButton());
+			}
 			if (node instanceof Pane)
 			{
 				addApplyActionListener((Pane) node);
+			}			
+			if (node instanceof TitledPane)
+			{
+				TitledPane titledPane = (TitledPane) node;
+				addApplyActionListener((Pane) titledPane.getContent());
 			}
 		});
 	}

@@ -14,6 +14,12 @@
                 "size": 24.0,
                 "background": "#ff00ffff",
                 "foreground": "#ffffffff"
+            },
+			"window": {
+                "autosize": true,
+                "width": 960,
+                "height": 224,
+                "align": "CENTER"
             }
         },
         "userStats": {
@@ -31,6 +37,12 @@
                 "size": 24.0,
                 "background": "#ff00ffff",
                 "foreground": "#ffffffff"
+            },
+			"window": {
+                "autosize": true,
+                "width": 960,
+                "height": 224,
+                "align": "CENTER"
             }
         },
         "unlockedAchievements": {
@@ -46,6 +58,12 @@
                 "size": 24.0,
                 "background": "#ff00ffff",
                 "foreground": "#ffffffff"
+            },
+			"window": {
+                "autosize": true,
+                "width": 960,
+                "height": 224,
+                "align": "CENTER"
             }
         },
         "nextAchievement": {
@@ -62,6 +80,12 @@
                 "size": 24.0,
                 "background": "#ff00ffff",
                 "foreground": "#ffffffff"
+            },
+			"window": {
+                "autosize": true,
+                "width": 960,
+                "height": 224,
+                "align": "CENTER"
             }
         },
         "completedGames": {
@@ -79,6 +103,12 @@
                 "size": 24.0,
                 "background": "#ff00ffff",
                 "foreground": "#ffffffff"
+            },
+			"window": {
+                "autosize": true,
+                "width": 960,
+                "height": 224,
+                "align": "CENTER"
             }
         }
     },

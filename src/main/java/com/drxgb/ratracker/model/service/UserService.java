@@ -67,13 +67,13 @@ public class UserService
 	public void updateUser(JsonObject userSummary) throws NullPointerException, ParseException
 	{
 		JsonObject lastActivity = userSummary.getJsonObject("LastActivity");
-		user.setId(Long.valueOf(lastActivity.getString("ID")));
+		user.setId(Long.valueOf(lastActivity.getInt("ID")));
 		user.setName(lastActivity.getString("User"));
 		user.setPicture(userSummary.getString("UserPic"));
 		user.setMotto(userSummary.getString("Motto"));
 		user.setRank(userSummary.getInt("Rank"));
-		user.setPoints(Integer.valueOf(userSummary.getString("TotalPoints")));
-		user.setTruePoints(Integer.valueOf(userSummary.getString("TotalTruePoints")));
+		user.setPoints(userSummary.getInt("TotalPoints"));
+		user.setTruePoints(userSummary.getInt("TotalTruePoints"));
 		user.setPresenceMessage(userSummary.getString("RichPresenceMsg"));
 		user.setStatus(userSummary.getString("Status"));
 		user.setRecentAchievements(
@@ -99,8 +99,8 @@ public class UserService
 		game.setDeveloper(gameInfo.getString("Developer"));
 		game.setGenre(gameInfo.getString("Genre"));
 		game.setReleased(gameInfo.getString("Released"));
-		game.setTotalPlayers(Integer.parseInt(gameInfo.getString("NumDistinctPlayersCasual")));
-		game.setTotalPlayersHardcore(Integer.parseInt(gameInfo.getString("NumDistinctPlayersHardcore")));
+		game.setTotalPlayers(gameInfo.getInt("NumDistinctPlayersCasual"));
+		game.setTotalPlayersHardcore(gameInfo.getInt("NumDistinctPlayersHardcore"));
 		game.setConsole(ConsoleFactory.create(gameInfo));
 		game.setImage(GameImageFactory.create(gameInfo));
 		game.setAchievements(

@@ -24,24 +24,25 @@ public abstract class CompletionProgressFactory
 	 */
 	public static CompletionProgress create(JsonObject gameInfo, JsonObject progress)
 	{
-		final String id = gameInfo.getString("GameID");
+		final int id = gameInfo.getInt("GameID");
+		final String keyId = String.valueOf(id);
 		
 		Game game = new Game();
-		game.setId(Long.parseLong(id));
+		game.setId(Long.valueOf(id));
 		game.setTitle(gameInfo.getString("Title"));
 		game.setImage(new GameImage(gameInfo.getString("ImageIcon")));
 		game.setConsole(
 				new Console(
-					Long.parseLong(gameInfo.getString("ConsoleID")),
+					Long.valueOf(gameInfo.getInt("ConsoleID")),
 					gameInfo.getString("ConsoleName")
 				)
 		);
 		
 		return new CompletionProgress(
 				gameInfo.getString("HardcoreMode").equals("1"),
-				Integer.parseInt(progress.getJsonObject(id).getString("ScoreAchieved")),
-				Integer.parseInt(gameInfo.getString("NumAwarded")),
-				Integer.parseInt(gameInfo.getString("MaxPossible")),
+				progress.getJsonObject(keyId).getInt("ScoreAchieved"),
+				gameInfo.getInt("NumAwarded"),
+				gameInfo.getInt("MaxPossible"),
 				game
 		);
 	}

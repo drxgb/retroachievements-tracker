@@ -12,10 +12,12 @@ import com.drxgb.ratracker.model.service.ApiService;
 import com.drxgb.ratracker.model.service.MainService;
 import com.drxgb.ratracker.util.annotation.SettingsGroup;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -130,10 +132,11 @@ public abstract class ViewController implements ViewInterface
 	 * Called when the view needs to be refreshed.
 	 */
 	public void update()
-	{
+	{		
 		paneMain.getChildren().clear();
 		paneMain.setHgap(12.0);
 		paneMain.setVgap(8.0);
+		updateWindowSize();
 		onUpdate();
 		if (scene != null)
 		{
@@ -205,6 +208,29 @@ public abstract class ViewController implements ViewInterface
 	}
 	
 	
+	/**
+	 * Refresh the window size.
+	 */
+	private void updateWindowSize()
+	{
+		JsonObject windowSettings = getWindowSettings();
+		
+		if (!windowSettings.getBoolean("autosize"))
+		{
+			final int width = windowSettings.getInt("width");
+			final int height = windowSettings.getInt("height");
+			final Pos align = Pos.valueOf(windowSettings.getString("align"));
+			
+			paneMain.setPrefSize(width, height);
+			paneMain.setMinWidth(Pane.USE_PREF_SIZE);
+			paneMain.setMinHeight(Pane.USE_PREF_SIZE);
+			paneMain.setMaxWidth(Pane.USE_PREF_SIZE);
+			paneMain.setMaxHeight(Pane.USE_PREF_SIZE);
+			paneMain.setAlignment(align);
+		}
+	}
+	
+	
 	/*
 	 * ===========================================================
 	 * 			*** PROTECTED METHODS ***
@@ -246,6 +272,16 @@ public abstract class ViewController implements ViewInterface
 	
 	
 	/**
+	 * Retrieves the window view from its settings group.
+	 * @return A JSON containing the window scoped by a settings group.
+	 */
+	protected JsonObject getWindowSettings()
+	{
+		return getViewSettings().getJsonObject("window");
+	}
+	
+	
+	/**
 	 * Retrieves an array of IDs that represents a field that will be
 	 * shown on the custom view.
 	 * @return The selected fields IDs that will show on the view.
@@ -280,7 +316,8 @@ public abstract class ViewController implements ViewInterface
 		JsonArray selectedFields = getSelectedFields();
 		
 		pane.getChildren().clear();
-		pane.setHgap(24.0);		
+		pane.setHgap(24.0);
+		
 		for (JsonNumber n : selectedFields.getValuesAs(JsonNumber.class))
 		{
 			final int index = n.intValue();
@@ -310,6 +347,8 @@ public abstract class ViewController implements ViewInterface
 		JsonObject phrases = getPhrases();
 		JsonObject layout = getLayout();
 		Label lblKey = new Label();
+		ColumnConstraints keyConstraints = new ColumnConstraints();
+		ColumnConstraints valueConstraints = new ColumnConstraints();
 		StringBuilder sb = new StringBuilder();
 		final String fontName = layout.getString("font");
 		final double fontSize = layout.getJsonNumber("size").doubleValue();
@@ -321,10 +360,18 @@ public abstract class ViewController implements ViewInterface
 		lblKey.setText(sb.toString());
 		lblKey.setTextFill(Color.web(layout.getString("foreground")));
 		lblKey.setFont(new Font(fontName, fontSize));
-
-		Node value = writeValue(lblKey, key);
-		GridPane.setHgrow(value, Priority.ALWAYS);
-		gridPane.addRow(row, lblKey, value);
+		
+		keyConstraints.setMinWidth(GridPane.USE_PREF_SIZE);
+		keyConstraints.setMaxWidth(GridPane.USE_PREF_SIZE);
+		keyConstraints.setPrefWidth(GridPane.USE_COMPUTED_SIZE);
+		valueConstraints.setMinWidth(GridPane.USE_PREF_SIZE);
+		valueConstraints.setMaxWidth(GridPane.USE_PREF_SIZE);
+		valueConstraints.setPrefWidth(GridPane.USE_COMPUTED_SIZE);
+		valueConstraints.setHgrow(Priority.ALWAYS);
+		
+		gridPane.getColumnConstraints().clear();
+		gridPane.getColumnConstraints().addAll(keyConstraints, valueConstraints);
+		gridPane.addRow(row, lblKey, writeValue(lblKey, key));
 	}
 	
 	
@@ -339,9 +386,12 @@ public abstract class ViewController implements ViewInterface
 	protected Node writeValue(Label lblKey, String key)
 	{
 		Label lblValue = new Label();
+
 		lblValue.setText(onFieldWrite(key));
 		lblValue.setTextFill(lblKey.getTextFill());
 		lblValue.setFont(lblKey.getFont());
+		lblValue.setWrapText(true);
+
 		return lblValue;
 	}
 	

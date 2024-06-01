@@ -19,31 +19,26 @@ import javax.json.JsonObjectBuilder;
 import javax.json.stream.JsonParser;
 import javax.json.stream.JsonParser.Event;
 
-import com.drxgb.javafxutils.ColorParser;
+import com.drxgb.ratracker.factory.JsonSettingsPaneFactory;
+import com.drxgb.ratracker.factory.LayoutJsonSettingsPaneFactory;
+import com.drxgb.ratracker.factory.LayoutSettingsPanelFactory;
+import com.drxgb.ratracker.factory.SettingsPanelFactory;
+import com.drxgb.ratracker.factory.WindowJsonSettingsPaneFactory;
+import com.drxgb.ratracker.factory.WindowSettingsPanelFactory;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 /**
  * Controller to load the custom view settings.
@@ -77,12 +72,7 @@ public class ViewSettingsController extends ApplicationSettingsController
 	/**
 	 * The maximum accepted completed games.
 	 */
-	public static final int MAX_COMPLETED_GAMES = 20;
-	
-	/**
-	 * Sample text used to test a layout before saving.
-	 */
-	private static final String SAMPLE_TEXT = "This is a sample text!";
+	public static final int MAX_COMPLETED_GAMES = 20;	
 	
 	
 	/*
@@ -102,7 +92,6 @@ public class ViewSettingsController extends ApplicationSettingsController
 					.getToggleGroup()
 					.getToggles();
 		iconDisplayOptions.get(settings.getInt("display", 0)).setSelected(true);
-		addApplyActionListener(pane);
 	}
 	
 	
@@ -117,7 +106,6 @@ public class ViewSettingsController extends ApplicationSettingsController
 				.getToggleGroup()
 				.getToggles();		
 		avatarDisplayOptions.get(settings.getInt("display", 0)).setSelected(true);
-		addApplyActionListener(pane);
 	}
 
 	
@@ -144,7 +132,6 @@ public class ViewSettingsController extends ApplicationSettingsController
 				)
 		);
 		badgeDisplayOptions.get(settings.getInt("display", 0)).setSelected(true);
-		addApplyActionListener(pane);
 	}
 
 	
@@ -164,7 +151,6 @@ public class ViewSettingsController extends ApplicationSettingsController
 
 		badgeDisplayOptions.get(settings.getInt("display", 0)).setSelected(true);
 		wonDisplayOptions.get(settings.getInt("wonByDisplay", 0)).setSelected(true);
-		addApplyActionListener(pane);
 	}
 
 	
@@ -197,7 +183,6 @@ public class ViewSettingsController extends ApplicationSettingsController
 				)
 		);
 		chkMastered.setSelected(settings.getBoolean("mastered"));
-		addApplyActionListener(pane);
 	}	
 	
 	
@@ -211,12 +196,13 @@ public class ViewSettingsController extends ApplicationSettingsController
 		ObservableList<Node> panes = paneGameInfo.getChildren();
 		Pane displayPane = (Pane) panes.get(0);		
 		ToggleGroup group = ((RadioButton) displayPane.getChildren().get(1)).getToggleGroup();
+		JsonObjectBuilder builder = Json.createObjectBuilder(obj);
 		
-		return Json.createObjectBuilder(obj)
-			.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
-			.add("fields", getSelectedFields((Pane) panes.get(1)))
-			.add("layout", getLayoutSettings(obj.getJsonObject("layout"), (Pane) ((TitledPane) panes.get(2)).getContent()))
-			.build();
+		builder.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
+			.add("fields", getSelectedFields((Pane) panes.get(1)));
+		addCommonSettings(builder, obj, panes);
+		
+		return builder.build();
 	}
 	
 	
@@ -230,12 +216,13 @@ public class ViewSettingsController extends ApplicationSettingsController
 		ObservableList<Node> panes = paneUserStats.getChildren();
 		Pane displayPane = (Pane) panes.get(0);		
 		ToggleGroup group = ((RadioButton) displayPane.getChildren().get(1)).getToggleGroup();
+		JsonObjectBuilder builder = Json.createObjectBuilder(obj);
 		
-		return Json.createObjectBuilder(obj)
-			.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
-			.add("fields", getSelectedFields((Pane) panes.get(1)))
-			.add("layout", getLayoutSettings(obj.getJsonObject("layout"), (Pane) ((TitledPane) panes.get(2)).getContent()))
-			.build();
+		builder.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
+			.add("fields", getSelectedFields((Pane) panes.get(1)));
+		addCommonSettings(builder, obj, panes);
+		
+		return builder.build();
 	}
 	
 	
@@ -251,13 +238,14 @@ public class ViewSettingsController extends ApplicationSettingsController
 		Pane displayPane = (Pane) panes.get(0);		
 		ToggleGroup group = ((RadioButton) displayPane.getChildren().get(1)).getToggleGroup();
 		Spinner<Integer> spnAchievements = (Spinner<Integer>) displayPane.getChildren().get(5);
+		JsonObjectBuilder builder = Json.createObjectBuilder(obj);
 		
-		return Json.createObjectBuilder(obj)
-			.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
+		builder.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
 			.add("showAchievements", spnAchievements.getValue())
-			.add("fields", getSelectedFields((Pane) panes.get(1)))
-			.add("layout", getLayoutSettings(obj.getJsonObject("layout"), (Pane) ((TitledPane) panes.get(2)).getContent()))
-			.build();
+			.add("fields", getSelectedFields((Pane) panes.get(1)));
+		addCommonSettings(builder, obj, panes);
+		
+		return builder.build();
 	}
 	
 	
@@ -272,13 +260,14 @@ public class ViewSettingsController extends ApplicationSettingsController
 		Pane displayPane = (Pane) panes.get(0);		
 		ToggleGroup group = ((RadioButton) displayPane.getChildren().get(1)).getToggleGroup();
 		ToggleGroup wonGroup = ((RadioButton) displayPane.getChildren().get(5)).getToggleGroup();
+		JsonObjectBuilder builder = Json.createObjectBuilder(obj);
 		
-		return Json.createObjectBuilder(obj)
-			.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
+		builder.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
 			.add("wonByDisplay", wonGroup.getToggles().indexOf(wonGroup.getSelectedToggle()))
-			.add("fields", getSelectedFields((Pane) panes.get(1)))
-			.add("layout", getLayoutSettings(obj.getJsonObject("layout"), (Pane) ((TitledPane) panes.get(2)).getContent()))
-			.build();
+			.add("fields", getSelectedFields((Pane) panes.get(1)));
+		addCommonSettings(builder, obj, panes);
+
+		return builder.build();
 	}
 	
 	
@@ -296,15 +285,40 @@ public class ViewSettingsController extends ApplicationSettingsController
 		Spinner<Integer> spnGames = (Spinner<Integer>) displayPane.getChildren().get(5);
 		ToggleGroup wonGroup = ((RadioButton) displayPane.getChildren().get(8)).getToggleGroup();
 		CheckBox chkMastered = (CheckBox) displayPane.getChildren().get(7);
-		
-		return Json.createObjectBuilder(obj)
-			.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
+		JsonObjectBuilder builder = Json.createObjectBuilder(obj);
+			
+		builder.add("display", group.getToggles().indexOf(group.getSelectedToggle()))
 			.add("showGames", spnGames.getValue())
 			.add("wonByDisplay", wonGroup.getToggles().indexOf(wonGroup.getSelectedToggle()))
 			.add("mastered", chkMastered.isSelected())
-			.add("fields", getSelectedFields((Pane) panes.get(1)))
-			.add("layout", getLayoutSettings(obj.getJsonObject("layout"), (Pane) ((TitledPane) panes.get(2)).getContent()))
-			.build();
+			.add("fields", getSelectedFields((Pane) panes.get(1)));
+		addCommonSettings(builder, obj, panes);
+
+		return builder.build();
+	}
+	
+	
+	/**
+	 * Add common settings from the tabs.
+	 * @param builder The JSON object builder.
+	 * @param obj The JSON object.
+	 * @param children The pane where the settings are.
+	 */
+	private void addCommonSettings(JsonObjectBuilder builder, JsonObject obj, ObservableList<Node> children)
+	{
+		JsonSettingsPaneFactory layoutObjectFactory = new LayoutJsonSettingsPaneFactory();
+		JsonSettingsPaneFactory windowObjectFactory = new WindowJsonSettingsPaneFactory();
+		JsonObject layoutSettings = layoutObjectFactory.makeObject(
+				obj.getJsonObject("layout"),
+				(Pane) ((TitledPane) children.get(2)).getContent()
+		);
+		JsonObject windowSettings = windowObjectFactory.makeObject(
+				obj.getJsonObject("window"),
+				(Pane) ((TitledPane) children.get(3)).getContent()
+				);
+		
+		builder.add("layout", layoutSettings);
+		builder.add("window", windowSettings);
 	}
 
 	
@@ -383,77 +397,6 @@ public class ViewSettingsController extends ApplicationSettingsController
 
 	
 	/**
-	 * Load the layout settings.
-	 * @param settings A JSON object with the layout settings.
-	 * @param pane Area to place the layout settings.
-	 */
-	private void loadLayoutPane(JsonObject settings, Pane pane)
-	{
-		VBox vbContent = new VBox(8.0);
-		TitledPane titledPane = new TitledPane("Layout", vbContent);		
-		HBox hbFont = new HBox(8.0);
-		HBox hbPreview = new HBox();
-		ComboBox<String> cbFont = new ComboBox<>();
-		Spinner<Double> spnSize = new Spinner<>();
-		ColorPicker cpBackground = new ColorPicker();
-		ColorPicker cpForeground = new ColorPicker();
-		TextField txtTest = new TextField();
-		Label lblPreview = new Label();
-		ObservableList<Node> obsContentPane = vbContent.getChildren();
-		ObservableList<Node> obsFontPane = hbFont.getChildren();
-		final double size = settings.getJsonNumber("size").doubleValue();
-		
-		pane.getChildren().add(titledPane);
-		obsContentPane.add(hbFont);
-		obsContentPane.add(new Label("Test:"));
-		obsContentPane.add(txtTest);
-		obsContentPane.add(hbPreview);
-		obsFontPane.add(new Label("Font:"));
-		obsFontPane.add(cbFont);
-		obsFontPane.add(new Label("Size:"));
-		obsFontPane.add(spnSize);
-		obsFontPane.add(new Label("Background"));
-		obsFontPane.add(cpBackground);
-		obsFontPane.add(new Label("Foreground:"));
-		obsFontPane.add(cpForeground);
-		titledPane.setCollapsible(false);
-		hbFont.setAlignment(Pos.CENTER_LEFT);
-		hbPreview.getChildren().add(lblPreview);
-		hbPreview.setPadding(new Insets(12.0));
-		hbPreview.setAlignment(Pos.CENTER);
-		
-		cbFont.getSelectionModel().selectedItemProperty().addListener((obs, oldvalue, newValue) -> {
-			final double fontSize = lblPreview.getFont().getSize();
-			lblPreview.setFont(new Font(newValue, fontSize));
-		});
-		spnSize.valueProperty().addListener((obs, oldValue, newValue) -> {
-			final String name = lblPreview.getFont().getName();
-			lblPreview.setFont(new Font(name, newValue));
-		});
-		txtTest.textProperty().addListener((obs, oldValue, newValue) -> {
-			lblPreview.setText(newValue);
-		});
-		cpBackground.valueProperty().addListener((obs, oldValue, newValue) -> {
-			hbPreview.setStyle("-fx-background-color:" + ColorParser.toCssHexColor(newValue));
-		});
-		cpForeground.valueProperty().addListener((obs, oldValue, newValue) -> {
-			lblPreview.setTextFill(newValue);
-		});
-		
-		cbFont.setItems(FXCollections.observableList(Font.getFamilies()));
-		cbFont.getSelectionModel().select(settings.getString("font"));
-		spnSize.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(1, 100, size, 1));
-		spnSize.setPrefWidth(64);
-		cpBackground.setValue(null);
-		cpForeground.setValue(null);
-		cpBackground.setValue(Color.web(settings.getString("background")));
-		cpForeground.setValue(Color.web(settings.getString("foreground")));
-		txtTest.setText(SAMPLE_TEXT);
-		addApplyActionListener(hbFont);
-	}
-
-	
-	/**
 	 * Load the tab custom fields.
 	 * @param settings A JSON Object with settings.
 	 * @param phrases A JSON Object with phrases.
@@ -470,6 +413,8 @@ public class ViewSettingsController extends ApplicationSettingsController
 		ObservableList<Node> subPanes = pane.getChildren();
 		List<FieldItem> fields = new ArrayList<>();
 		JsonParser parser = Json.createParser(new StringReader(phrases.toString()));
+		SettingsPanelFactory layoutPanelFactory = new LayoutSettingsPanelFactory();
+		SettingsPanelFactory windowPanelFactory = new WindowSettingsPanelFactory();
 		
 		int i = 0;
 		while (parser.hasNext())
@@ -479,9 +424,11 @@ public class ViewSettingsController extends ApplicationSettingsController
 				fields.add(new FieldItem(i++, parser.getString()));
 		}
 		
-		loadBasicSettings.accept(settings, (Pane) subPanes.get(0));		
-		loadFieldsPane(settings.getJsonArray("fields"), (Pane) subPanes.get(1), fields);
-		loadLayoutPane(settings.getJsonObject("layout"), pane);
+		loadBasicSettings.accept(settings, (Pane) subPanes.get(0));
+		loadFieldsPane(settings.getJsonArray("fields"), (Pane) subPanes.get(1), fields);		
+		pane.getChildren().add(layoutPanelFactory.makePanel(settings.getJsonObject("layout")));
+		pane.getChildren().add(windowPanelFactory.makePanel(settings.getJsonObject("window")));
+		addApplyActionListener(pane);
 	}
 	
 	
@@ -523,30 +470,6 @@ public class ViewSettingsController extends ApplicationSettingsController
 						.map(f -> f.getId())
 						.collect(Collectors.toList())
 				)
-				.build();
-	}
-	
-	
-	/**
-	 * Retrieve the layout settings from the tab content.
-	 * @param settings The JSON Object with settings.
-	 * @param pane Area when the tab is placed.
-	 * @return A <code>JsonObject</code> containing the new layout settings.
-	 */
-	@SuppressWarnings("unchecked")
-	private static JsonObject getLayoutSettings(JsonObject settings, Pane pane)
-	{
-		Pane settingsPane = (Pane) pane.getChildren().get(0);
-		ComboBox<String> cbFonts = (ComboBox<String>) settingsPane.getChildren().get(1);
-		Spinner<Double> spnSize = (Spinner<Double>) settingsPane.getChildren().get(3);
-		ColorPicker cpBackground = (ColorPicker) settingsPane.getChildren().get(5);
-		ColorPicker cpForeground = (ColorPicker) settingsPane.getChildren().get(7);
-		
-		return Json.createObjectBuilder(settings)
-				.add("font", cbFonts.getSelectionModel().getSelectedItem())
-				.add("size", spnSize.getValue())
-				.add("background", ColorParser.toCssHexColor(cpBackground.getValue()))
-				.add("foreground", ColorParser.toCssHexColor(cpForeground.getValue()))
 				.build();
 	}
 

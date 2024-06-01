@@ -44,16 +44,16 @@ public abstract class AchievementFactory
 			
 			try
 			{
-				achievement.setId(Long.parseLong(obj.getString("ID")));
+				achievement.setId(Long.valueOf(obj.getInt("ID")));
 				achievement.setBadgeId(Long.parseLong(obj.getString("BadgeName")));
 				achievement.setTitle(obj.getString("Title"));
 				achievement.setDescription(obj.getString("Description"));
-				achievement.setPoints(Integer.parseInt(obj.getString("Points")));
-				achievement.setTrueRatio(Integer.parseInt(obj.getString("TrueRatio")));
-				achievement.setUnlocks(Integer.parseInt(obj.getString("NumAwarded")));
-				achievement.setHardcoreUnlocks(Integer.parseInt(obj.getString("NumAwardedHardcore")));
+				achievement.setPoints(obj.getInt("Points"));
+				achievement.setTrueRatio(obj.getInt("TrueRatio"));
+				achievement.setUnlocks(obj.getInt("NumAwarded"));
+				achievement.setHardcoreUnlocks(obj.getInt("NumAwardedHardcore"));
 				achievement.setAuthor(obj.getString("Author"));
-				achievement.setDisplayOrder(Integer.parseInt(obj.getString("DisplayOrder")));
+				achievement.setDisplayOrder(obj.getInt("DisplayOrder"));
 				achievement.setCreatedAt(sdf.parse(obj.getString("DateCreated")));
 				achievement.setModifiedAt(sdf.parse(obj.getString("DateModified")));
 				achievement.setEarnedAt(sdf.parse(obj.getString("DateEarned")));

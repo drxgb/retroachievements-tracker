@@ -52,7 +52,7 @@ public abstract class ParameterBuilder
 	 * @param fnGetValue Retrieve a value from a callback to append a text.
 	 * @return An output containing a formed <code>String</code>.
 	 */
-	public static <T> String listToCsv(List<T> list, Function<T, String> fnGetValue)
+	public static <T> String listToCsv(List<T> list, Function<T, Object> fnGetValue)
 	{
 		StringBuilder sb = new StringBuilder();
 		for (T e : list)

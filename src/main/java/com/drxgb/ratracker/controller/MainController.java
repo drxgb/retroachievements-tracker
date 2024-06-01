@@ -378,7 +378,7 @@ public class MainController implements Initializable
 	@FXML
 	public void onMnitAboutAction() throws IOException
 	{
-		openSettingsWindow("AboutView", "About" + RATrackerApplication.NAME);
+		openSettingsWindow("AboutView", "About " + RATrackerApplication.NAME);
 	}
 	
 	
@@ -508,7 +508,7 @@ public class MainController implements Initializable
 		Stage stage = (Stage) RATrackerApplication.getScene().getWindow();
 		Stage settingsStage;
 		
-		sb.append("view/")
+		sb.append("/resources/view/")
 			.append(fxmlName)
 			.append(".fxml");
 		settingsStage = StageFactory.openWindow(

@@ -98,7 +98,12 @@ public final class NextAchievementController extends SingleViewController
 					new VBox(),
 					label
 			);
+			
+			pane.setPrefWidth(Pane.USE_COMPUTED_SIZE);
+			pane.setMinWidth(Pane.USE_PREF_SIZE);
+			pane.setMaxWidth(Double.MAX_VALUE);
 			label.setTextFill(lblKey.getTextFill());			
+
 			return pane;
 		}
 		return super.writeValue(lblKey, key);

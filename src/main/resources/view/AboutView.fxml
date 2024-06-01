@@ -86,7 +86,7 @@
                         <Label fx:id="lblVersion" GridPane.columnIndex="1" />
                         <Label text="Dr.XGB" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lblJavaVersion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Aug 15th, 2022" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="May 12th, 2024" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label text="JavaFX Version:" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
