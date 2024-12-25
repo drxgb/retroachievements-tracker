@@ -37,6 +37,16 @@ public final class CompletedGamesController extends ListViewController<Completio
 	 * 			*** IMPLEMENTED METHODS ***
 	 * ===========================================================
 	 */
+	
+	/**
+	 * @see com.drxgb.ratracker.controller.view.ViewInterface#canUpdate()
+	 */
+	@Override
+	public boolean canUpdate()
+	{
+		return true;
+	}
+	
 
 	@Override
 	protected ImageView getIcon(CompletionProgress obj)

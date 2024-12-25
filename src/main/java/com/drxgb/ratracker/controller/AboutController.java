@@ -1,6 +1,9 @@
 package com.drxgb.ratracker.controller;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import com.drxgb.ratracker.RATrackerApplication;
@@ -27,9 +30,12 @@ public class AboutController implements Initializable
 	 */
 	
 	@FXML private Label lblAppName;
+	@FXML private Label lblAuthor;
 	@FXML private Label lblVersion;
 	@FXML private Label lblJavaVersion;
 	@FXML private Label lblJavaFxVersion;
+	@FXML private Label lblReleaseDate;
+	@FXML private Label lblCopyright;
 	
 	
 	/*
@@ -41,10 +47,23 @@ public class AboutController implements Initializable
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
+		final Calendar releaseDate = RATrackerApplication.getReleaseDate();
+		final String author = RATrackerApplication.AUTHOR;
+		final DateFormat df = new SimpleDateFormat("MMM dd, YYYY");
+		
 		lblAppName.setText(RATrackerApplication.NAME);
+		lblAuthor.setText(author);
 		lblVersion.setText(RATrackerApplication.VERSION);
 		lblJavaVersion.setText(System.getProperty("java.version"));
 		lblJavaFxVersion.setText(System.getProperty("javafx.runtime.version"));
+		lblReleaseDate.setText(df.format(releaseDate.getTime()));
+		lblCopyright.setText(new StringBuilder()
+				.append('©').append(' ')
+				.append(releaseDate.get(Calendar.YEAR))
+				.append(" - ")
+				.append(author)
+				.toString()
+		);
 	}
 	
 	

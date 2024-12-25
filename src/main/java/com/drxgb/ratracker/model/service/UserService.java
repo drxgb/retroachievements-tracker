@@ -37,7 +37,12 @@ public class UserService
 	/**
 	 * The current user.
 	 */
-	private User user = new User();
+	private User user;
+	
+	/**
+	 * The achievement service.
+	 */
+	private AchievementService achievementService;
 	
 	
 	/*
@@ -49,7 +54,11 @@ public class UserService
 	/**
 	 * Creates a fresh service.
 	 */
-	public UserService() {}
+	public UserService()
+	{
+		user = new User();
+		achievementService = new AchievementService(user);
+	}
 	
 	
 	/*
@@ -92,21 +101,29 @@ public class UserService
 	 */
 	public void updateLastGame(JsonObject gameInfo) throws NullPointerException, ParseException
 	{
-		Game game = new Game();
-		game.setId((long) gameInfo.getInt("ID"));
-		game.setTitle(gameInfo.getString("Title"));
-		game.setPublisher(gameInfo.getString("Publisher"));
-		game.setDeveloper(gameInfo.getString("Developer"));
-		game.setGenre(gameInfo.getString("Genre"));
-		game.setReleased(gameInfo.getString("Released"));
-		game.setTotalPlayers(gameInfo.getInt("NumDistinctPlayersCasual"));
-		game.setTotalPlayersHardcore(gameInfo.getInt("NumDistinctPlayersHardcore"));
-		game.setConsole(ConsoleFactory.create(gameInfo));
-		game.setImage(GameImageFactory.create(gameInfo));
-		game.setAchievements(
+		Game oldGame = user.getLastGame();
+		Game newGame = new Game();
+
+		newGame.setId((long) gameInfo.getInt("ID"));
+		newGame.setTitle(gameInfo.getString("Title"));
+		newGame.setPublisher(gameInfo.getString("Publisher"));
+		newGame.setDeveloper(gameInfo.getString("Developer"));
+		newGame.setGenre(gameInfo.getString("Genre"));
+		newGame.setReleased(gameInfo.getString("Released"));
+		newGame.setTotalPlayers(gameInfo.getInt("NumDistinctPlayersCasual"));
+		newGame.setTotalPlayersHardcore(gameInfo.getInt("NumDistinctPlayersHardcore"));
+		newGame.setConsole(ConsoleFactory.create(gameInfo));
+		newGame.setImage(GameImageFactory.create(gameInfo));
+		newGame.setAchievements(
 				AchievementFactory.createList(gameInfo.getJsonObject("Achievements"))
 		);
-		user.setLastGame(game);
+		
+		if (oldGame != null && ! oldGame.equals(newGame))
+		{
+			achievementService.reset();
+		}
+		
+		user.setLastGame(newGame);
 	}
 	
 	
@@ -199,22 +216,6 @@ public class UserService
 	
 	
 	/**
-	 * Get the next locked achievement.
-	 * @return The next achievement to be unlocked.
-	 */
-	public Achievement getNextAchievement()
-	{
-		return user
-				.getLastGame()
-				.getAchievements()
-				.stream()
-				.filter(a -> !a.earned() && !a.earnedHardcore())
-				.findFirst()
-				.get();
-	}
-	
-	
-	/**
 	 * Write the "Won By" message like the RA web page.
 	 * <p>Structure:</p>
 	 * <ul>
@@ -250,7 +251,7 @@ public class UserService
 	@FieldKey(name = "wonBy")
 	public String writeByWonAchievement()
 	{
-		return writeWonByAchievement(getNextAchievement());
+		return writeWonByAchievement(achievementService.getNextAchievement());
 	}
 	
 	
@@ -273,7 +274,7 @@ public class UserService
 	@FieldKey(name = "wonPercent")
 	public String writeWonPercent()
 	{
-		return writeWonPercent(getNextAchievement());
+		return writeWonPercent(achievementService.getNextAchievement());
 	}
 	
 	
@@ -286,6 +287,12 @@ public class UserService
 	public User getUser()
 	{
 		return user;
+	}
+	
+	
+	public AchievementService getAchievementService()
+	{
+		return achievementService;
 	}
 	
 	

@@ -18,8 +18,10 @@ import com.drxgb.ratracker.controller.view.NextAchievementController;
 import com.drxgb.ratracker.controller.view.UnlockedAchievementsController;
 import com.drxgb.ratracker.controller.view.UserStatsController;
 import com.drxgb.ratracker.controller.view.ViewController;
+import com.drxgb.ratracker.model.entity.game.Achievement;
 import com.drxgb.ratracker.model.entity.game.Game;
 import com.drxgb.ratracker.model.entity.user.User;
+import com.drxgb.ratracker.model.service.AchievementService;
 import com.drxgb.ratracker.model.service.ApiService;
 import com.drxgb.ratracker.model.service.MainService;
 import com.drxgb.ratracker.model.service.concurrency.RefreshSessionService;
@@ -32,6 +34,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.ProgressIndicator;
@@ -39,6 +42,8 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -73,6 +78,17 @@ public class MainController implements Initializable
 	@FXML private Label lblAchievements;
 	@FXML private Label lblScore;
 	@FXML private Label lblProgress;
+	
+	@FXML private GridPane grdNextAchievement;
+	@FXML private VBox vbNoAchievements;
+	@FXML private ImageView imgAchievementIcon;
+	@FXML private Label lblAchievementTitle;
+	@FXML private Label lblAchievementDescription;
+	@FXML private Label lblAchievementPoints;
+	@FXML private Label lblAchievementTruePoints;
+	@FXML private Label lblAchievementWon;
+	@FXML private Button btnPreviousAchievement;
+	@FXML private Button btnNextAchievement;
 	
 	@FXML private Circle crcUpdate;
 	@FXML private ProgressIndicator prgRefresh;
@@ -141,52 +157,18 @@ public class MainController implements Initializable
 	 */
 	public void update() throws IOException
 	{
-		if (
-				apiService == null ||
-				!apiService.isOpen() ||
-				apiService.isConsuming()
-			)
+		if (apiService == null ||
+			! apiService.isOpen() ||
+			apiService.isConsuming())
+		{
 			return;
+		}
 		
-		User user = apiService.getUserService().getUser();
-		Game lastGame = user.getLastGame();
-		String avatarUrl = RATrackerApplication.RA_URL + user.getPicture();
-		String gameImageUrl = RATrackerApplication.RA_URL + lastGame.getImage().getIcon();
-		
-		// User
-		imgAvatar.setImage(new Image(avatarUrl));
-		lblUserName.setText(user.getName());
-		lblRank.setText("#" + user.getRank());
-		lblPoints.setText(user.getPoints() + "/" + user.getTruePoints());
-		lblMotto.setText(user.getMotto());
-		lblPresenceMessage.setText(user.getPresenceMessage());
-		setUserStatus(user);
-		
-		// Game
-		imgGameIcon.setImage(new Image(gameImageUrl));
-		lblTitle.setText(lastGame.getTitle());
-		lblConsole.setText(lastGame.getConsole().getName());
-		lblAchievements.setText(
-				lastGame.getEarnedAchievements().size() +
-				"/" +
-				lastGame.getAchievements().size()
-		);
-		lblScore.setText(
-				lastGame.points() +
-				"(" + lastGame.hardcorePoints() + ")" +
-				"/" +
-				lastGame.totalPoints()
-		);
-		lblProgress.setText(
-				((int) (lastGame.progress() * 100)) +
-				"% complete"
-		);
-		
-		// Status
-		crcUpdate.setVisible(true);
-		crcUpdate.setFill(clrOk);
-		prgRefresh.setVisible(false);
-		lblStatus.setText(getLastUpdateText());
+		updateUserPane();
+		updateLastGamePane();
+		apiService.getUserService().getAchievementService().update();
+		updateNextAchievementPane();
+		updateStatusPane();		
 		
 		mainService.refresh();
 	}
@@ -382,11 +364,143 @@ public class MainController implements Initializable
 	}
 	
 	
+	/**
+	 * Called when the user requests the previous achievement to display.
+	 * @throws IOException 
+	 */
+	@FXML
+	public void onBtnPreviousAchievementAction() throws IOException
+	{
+		apiService.getUserService().getAchievementService().previous();
+		updateNextAchievementPane();
+		mainService.refresh();
+	}
+	
+	
+	/**
+	 * Called when the user requests the next achievement to display.
+	 * @throws IOException 
+	 */
+	@FXML
+	public void onBtnNextAchievementAction() throws IOException
+	{
+		apiService.getUserService().getAchievementService().next();
+		updateNextAchievementPane();
+		mainService.refresh();
+	}
+	
+	
+	/**
+	 * Called when the user requests the first achievement to display.
+	 * @throws IOException 
+	 */
+	public void onBtnResetAchievementAction() throws IOException
+	{
+		apiService.getUserService().getAchievementService().reset();
+		updateNextAchievementPane();
+		mainService.refresh();
+	}
+	
+	
 	/*
 	 * ===========================================================
 	 * 			*** PRIVATE METHODS***
 	 * ===========================================================
 	 */
+	
+	/**
+	 * Updates the user panel area.
+	 */
+	private void updateUserPane()
+	{
+		User user = apiService.getUserService().getUser();
+		String avatarUrl = RATrackerApplication.RA_URL + user.getPicture();
+		
+		imgAvatar.setImage(new Image(avatarUrl));
+		lblUserName.setText(user.getName());
+		lblRank.setText("#" + user.getRank());
+		lblPoints.setText(user.getPoints() + "/" + user.getTruePoints());
+		lblMotto.setText(user.getMotto());
+		lblPresenceMessage.setText(user.getPresenceMessage());
+		setUserStatus(user);
+	}
+	
+	
+	/**
+	 * Updates the last game panel area.
+	 */
+	private void updateLastGamePane()
+	{
+		Game lastGame = apiService.getUserService().getUser().getLastGame();		
+		String gameImageUrl = RATrackerApplication.RA_URL + lastGame.getImage().getIcon();
+
+		imgGameIcon.setImage(new Image(gameImageUrl));
+		lblTitle.setText(lastGame.getTitle());
+		lblConsole.setText(lastGame.getConsole().getName());
+		lblAchievements.setText(
+				lastGame.getEarnedAchievements().size() +
+				"/" +
+				lastGame.getAchievements().size()
+		);
+		lblScore.setText(
+				lastGame.points() +
+				"(" + lastGame.hardcorePoints() + ")" +
+				"/" +
+				lastGame.totalPoints()
+		);
+		lblProgress.setText(
+				((int) (lastGame.progress() * 100)) +
+				"% complete"
+		);
+	}
+	
+	
+	/**
+	 * Updates the next achievement panel area.
+	 */
+	private void updateNextAchievementPane()
+	{	
+		Achievement next;
+		AchievementService achievementService = apiService.getUserService().getAchievementService();		
+		final boolean hasAchievements = achievementService.hasMoreAchievements();
+		
+		grdNextAchievement.setVisible(hasAchievements);
+		vbNoAchievements.setVisible(! hasAchievements);
+		btnPreviousAchievement.setDisable(! achievementService.hasPrevious());
+		btnNextAchievement.setDisable(! achievementService.hasNext());
+		
+		if (hasAchievements)
+		{
+			next = achievementService.getNextAchievement();
+			
+			imgAchievementIcon.setImage(new Image(
+					next.getBadgePath(),
+					96,
+					96,
+					true,
+					false
+			));
+			
+			lblAchievementTitle.setText(next.getTitle());
+			lblAchievementDescription.setText(next.getDescription());
+			lblAchievementPoints.setText(next.getPoints().toString());
+			lblAchievementTruePoints.setText(next.getTrueRatio().toString());
+			lblAchievementWon.setText(apiService.getUserService().writeWonPercent());
+		}
+	}
+	
+	
+	/**
+	 * Updates the status panel area.
+	 */
+	private void updateStatusPane()
+	{
+		crcUpdate.setVisible(true);
+		crcUpdate.setFill(clrOk);
+		prgRefresh.setVisible(false);
+		lblStatus.setText(getLastUpdateText());
+	}
+	
 	
 	/**
 	 * Change the user status between ONLINE and OFFLINE.

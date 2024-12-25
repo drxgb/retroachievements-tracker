@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drxgb.ratracker.controller.AboutController">
+<HBox xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drxgb.ratracker.controller.AboutController">
    <children>
       <VBox alignment="TOP_CENTER">
          <children>
@@ -84,9 +84,9 @@
                            </font>
                         </Label>
                         <Label fx:id="lblVersion" GridPane.columnIndex="1" />
-                        <Label text="Dr.XGB" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lblAuthor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lblJavaVersion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="May 12th, 2024" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="lblReleaseDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label text="JavaFX Version:" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -100,7 +100,7 @@
             <Separator />
             <VBox alignment="TOP_CENTER">
                <children>
-                  <Label text="© 2022 - Dr.XGB" />
+                  <Label fx:id="lblCopyright" />
                   <Hyperlink onAction="#onHlkAuthorSiteAction" text="https://github.com/drxgb" />
                </children>
             </VBox>

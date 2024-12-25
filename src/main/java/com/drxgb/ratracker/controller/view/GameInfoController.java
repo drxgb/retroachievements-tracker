@@ -21,7 +21,17 @@ public final class GameInfoController extends SingleViewController
 	 * ===========================================================
 	 * 			*** IMPLEMENTED METHODS ***
 	 * ===========================================================
-	 */	
+	 */
+	
+	/**
+	 * @see com.drxgb.ratracker.controller.view.ViewInterface#canUpdate()
+	 */
+	@Override
+	public boolean canUpdate()
+	{
+		return apiService.getUserService().getUser().getLastGame() != null;
+	}
+	
 	
 	@Override
 	protected ImageView getIcon()

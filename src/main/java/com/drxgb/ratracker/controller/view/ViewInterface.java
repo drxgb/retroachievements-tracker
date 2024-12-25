@@ -22,4 +22,10 @@ public interface ViewInterface
 	 * Called when the controller is being refreshed.
 	 */
 	void onUpdate();
+	
+	/**
+	 * Check if the view can be updated.
+	 * @return The update flag.
+	 */
+	boolean canUpdate();
 }

@@ -63,6 +63,7 @@ public class ApiService implements TrackerService
 			
 		// User summary
 		params.put(ApiParam.USER, api.getSession().getUserName());
+		params.put(ApiParam.GAME, String.valueOf(ViewSettingsController.MAX_RECENT_GAMES));
 		params.put(ApiParam.ACHIEVEMENT, String.valueOf(ViewSettingsController.MAX_UNLOCKED_ACHIVEMENTS));
 		userSummary = (JsonObject) api.consume("API_GetUserSummary.php", params);
 		

@@ -54,6 +54,7 @@ public abstract class ListViewController<T> extends ViewController
 	public void onUpdate()
 	{
 		freshList();
+		
 		while (iterator.hasNext())
 		{
 			T element = iterator.next();
@@ -64,7 +65,7 @@ public abstract class ListViewController<T> extends ViewController
 			
 			constraints.setFillWidth(true);					
 			vbIcon.setAlignment(Pos.CENTER);
-			vbFields.setAlignment(Pos.CENTER);
+			vbFields.setAlignment(Pos.CENTER_LEFT);
 			vbFields.getColumnConstraints().add(constraints);
 			
 			updateIconPane(vbIcon, getIcon(element));
@@ -79,6 +80,8 @@ public abstract class ListViewController<T> extends ViewController
 					"-fx-background-color:" + getLayout().getString("foreground") + ";"
 			);
 		}
+		
+		updateBackground();
 	}
 	
 	

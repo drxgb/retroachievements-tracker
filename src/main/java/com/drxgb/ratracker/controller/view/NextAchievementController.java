@@ -1,6 +1,5 @@
 package com.drxgb.ratracker.controller.view;
 
-import com.drxgb.ratracker.RATrackerApplication;
 import com.drxgb.ratracker.factory.ProgressBarFactory;
 import com.drxgb.ratracker.model.entity.game.Achievement;
 import com.drxgb.ratracker.util.annotation.SettingsGroup;
@@ -40,11 +39,21 @@ public final class NextAchievementController extends SingleViewController
 	 * 			*** IMPLEMENTED METHODS ***
 	 * ===========================================================
 	 */
+	
+	/**
+	 * @see com.drxgb.ratracker.controller.view.ViewInterface#canUpdate()
+	 */
+	@Override
+	public boolean canUpdate()
+	{
+		return achievement != null;
+	}
+
 
 	@Override
 	public void onUpdate()
 	{
-		achievement = apiService.getUserService().getNextAchievement();
+		achievement = apiService.getUserService().getAchievementService().getNextAchievement();
 		super.onUpdate();
 	}
 
@@ -52,15 +61,8 @@ public final class NextAchievementController extends SingleViewController
 	@Override
 	protected ImageView getIcon()
 	{
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append(RATrackerApplication.RA_AWS_URL)
-			.append("Badge/")
-			.append(achievement.getBadgeId())
-			.append(".png");
-
 		return new ImageView(new Image(
-				sb.toString(),
+				achievement.getBadgePath(),
 				128,
 				128,
 				true,

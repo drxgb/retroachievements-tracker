@@ -1,6 +1,7 @@
 package com.drxgb.ratracker.model.entity;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.security.InvalidKeyException;
 import java.util.HashMap;
@@ -96,7 +97,7 @@ public class Api
 			.append("?")
 			.append(ParameterBuilder.toString(params));
 		
-		URL url = new URL(sb.toString());
+		URL url = URI.create(sb.toString()).toURL();
 		JsonReader jsonReader = Json.createReader(url.openStream());
 		JsonStructure json = jsonReader.read();
 		

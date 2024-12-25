@@ -312,7 +312,6 @@ public abstract class ViewController implements ViewInterface
 	protected void updateFieldsPane(GridPane pane)
 	{
 		JsonObject phrases = getPhrases();
-		JsonObject layout = getLayout();
 		JsonArray selectedFields = getSelectedFields();
 		
 		pane.getChildren().clear();
@@ -332,6 +331,15 @@ public abstract class ViewController implements ViewInterface
 			if (GridPane.getColumnIndex(n) % 2 == 1)
 				GridPane.setHgrow(n, Priority.ALWAYS);
 		});
+	}
+	
+	
+	/**
+	 * Called when the background needs to be rendered.
+	 */
+	protected void updateBackground()
+	{
+		JsonObject layout = getLayout();
 		paneMain.setStyle("-fx-background-color: " + layout.getString("background") + ";");
 	}
 	

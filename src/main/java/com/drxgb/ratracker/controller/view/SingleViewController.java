@@ -48,8 +48,13 @@ public abstract class SingleViewController extends ViewController
 	@Override
 	public void onUpdate()
 	{
-		updateIconPane(vbIcon, getIcon());
-		updateFieldsPane(vbFields);
-		mountView(paneMain, vbIcon, vbFields);
+		if (canUpdate())
+		{
+			updateIconPane(vbIcon, getIcon());
+			updateFieldsPane(vbFields);
+			mountView(paneMain, vbIcon, vbFields);
+		}
+		
+		updateBackground();
 	}
 }

@@ -3,7 +3,6 @@ package com.drxgb.ratracker.controller.view;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.drxgb.ratracker.RATrackerApplication;
 import com.drxgb.ratracker.model.entity.game.Achievement;
 import com.drxgb.ratracker.util.annotation.SettingsGroup;
 import com.drxgb.ratracker.util.mapping.FieldMapping;
@@ -26,20 +25,22 @@ public final class UnlockedAchievementsController extends ListViewController<Ach
 	 * 			*** IMPLEMENTED METHODS ***
 	 * ===========================================================
 	 */
+	
+	/**
+	 * @see com.drxgb.ratracker.controller.view.ViewInterface#canUpdate()
+	 */
+	@Override
+	public boolean canUpdate()
+	{
+		return true;
+	}
+	
 
 	@Override
 	protected ImageView getIcon(Achievement obj)
 	{
-		StringBuilder sb = new StringBuilder();
-		
-		sb
-			.append(RATrackerApplication.RA_AWS_URL)
-			.append("Badge/")
-			.append(obj.getBadgeId())
-			.append(".png");
-		
 		return new ImageView(new Image(
-				sb.toString(),
+				obj.getBadgePath(),
 				128,
 				128,
 				true,
@@ -51,6 +52,7 @@ public final class UnlockedAchievementsController extends ListViewController<Ach
 	protected List<Achievement> populateList()
 	{
 		final int count = getViewSettings().getInt("showAchievements");
+		
 		return apiService.getUserService()
 				.getUser()
 				.getRecentAchievements()

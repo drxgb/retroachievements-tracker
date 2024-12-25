@@ -23,6 +23,16 @@ public final class UserStatsController extends SingleViewController
 	 * ===========================================================
 	 */
 	
+	/**
+	 * @see com.drxgb.ratracker.controller.view.ViewInterface#canUpdate()
+	 */
+	@Override
+	public boolean canUpdate()
+	{
+		return apiService.getUserService().getUser() != null;
+	}
+	
+	
 	@Override
 	protected ImageView getIcon()
 	{

@@ -138,6 +138,17 @@ public class Achievement implements Comparable<Achievement>
 	 * 			*** PUBLIC METHODS ***
 	 * ===========================================================
 	 */
+	
+	public String getBadgePath()
+	{
+		return new StringBuilder()
+				.append(RATrackerApplication.RA_AWS_URL)
+				.append("Badge/")
+				.append(badgeId)
+				.append(".png")
+				.toString();
+	}
+	
 
 	/**
 	 * Check whether this achievement was earned by the current user.

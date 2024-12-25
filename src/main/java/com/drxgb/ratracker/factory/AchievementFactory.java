@@ -92,13 +92,13 @@ public abstract class AchievementFactory
 				Achievement achievement = new Achievement();
 				Game game = new Game();
 				
-				game.setId(Long.parseLong(obj.getString("GameID")));
+				game.setId((long) obj.getInt("GameID"));
 				game.setTitle(obj.getString("GameTitle"));
-				achievement.setId(Long.parseLong(obj.getString("ID")));
+				achievement.setId((long) obj.getInt("ID"));
 				achievement.setBadgeId(Long.parseLong(obj.getString("BadgeName")));
 				achievement.setTitle(obj.getString("Title"));
 				achievement.setDescription(obj.getString("Description"));
-				achievement.setPoints(Integer.parseInt(obj.getString("Points")));
+				achievement.setPoints(obj.getInt("Points"));
 				achievement.setEarnedAt(sdf.parse(obj.getString("DateAwarded")));
 				achievement.setGame(game);
 				

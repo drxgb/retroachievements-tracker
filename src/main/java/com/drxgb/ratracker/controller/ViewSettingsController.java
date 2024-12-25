@@ -72,7 +72,17 @@ public class ViewSettingsController extends ApplicationSettingsController
 	/**
 	 * The maximum accepted completed games.
 	 */
-	public static final int MAX_COMPLETED_GAMES = 20;	
+	public static final int MAX_COMPLETED_GAMES = 20;
+	
+	/**
+	 * The minimum accepted recent games.
+	 */
+	public static final int MIN_RECENT_GAMES = 1;
+	
+	/**
+	 * The maximum accepted recent games.
+	 */
+	public static final int MAX_RECENT_GAMES = 20;
 	
 	
 	/*

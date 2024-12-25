@@ -2,6 +2,7 @@ package com.drxgb.ratracker;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import com.drxgb.javafxutils.StageFactory;
 import com.drxgb.ratracker.controller.LoginController;
@@ -44,7 +45,12 @@ public class RATrackerApplication extends Application
 	/**
 	 * The current application version.
 	 */
-	public static final String VERSION = "1.0.1";
+	public static final String VERSION = "1.1.1";
+	
+	/**
+	 * The application author.
+	 */
+	public static final String AUTHOR = "Dr.XGB";
 	
 	/**
 	 * RetroAchievements web link.
@@ -71,6 +77,22 @@ public class RATrackerApplication extends Application
 	 * Default Auto Refresh interval.
 	 */
 	public static final Integer FALLBACK_AUTO_REFRESH_INTERVAL = 15;
+	
+	/**
+	 * The year of the release date.
+	 */
+	private static final int RELEASE_YEAR = 2024;
+	
+	/**
+	 * The month of the release date, starting from <code>0</code> as
+	 * <code>January</code> to <code>11</code> as <code>December</code>.
+	 */
+	private static final int RELEASE_MONTH = 11;
+	
+	/**
+	 * The day of month of the release date.
+	 */
+	private static final int RELEASE_DAY = 25;
 	
 	
 	/*
@@ -151,6 +173,23 @@ public class RATrackerApplication extends Application
 	{
 		return apiService;
 	}
+	
+	
+	/**
+	 * Gets the last release date.
+	 * @return The application release date.
+	 */
+	public static Calendar getReleaseDate()
+	{
+		Calendar cal = Calendar.getInstance();
+		
+		cal.set(Calendar.YEAR, RELEASE_YEAR);
+		cal.set(Calendar.MONTH, RELEASE_MONTH);
+		cal.set(Calendar.DAY_OF_MONTH, RELEASE_DAY);
+		
+		return cal;
+	}
+	
 	
 	/**
 	 * Gets the RetroAchievements default date format.
