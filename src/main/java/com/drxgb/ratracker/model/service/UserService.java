@@ -17,6 +17,7 @@ import com.drxgb.ratracker.model.entity.game.Achievement;
 import com.drxgb.ratracker.model.entity.game.CompletionProgress;
 import com.drxgb.ratracker.model.entity.game.Game;
 import com.drxgb.ratracker.model.entity.user.User;
+import com.drxgb.ratracker.util.JsonValues;
 import com.drxgb.ratracker.util.annotation.FieldKey;
 
 /**
@@ -94,7 +95,7 @@ public class UserService
 	
 	
 	/**
-	 * Sets the last game plaed by the current user.
+	 * Sets the last game played by the current user.
 	 * @param gameInfo The JSON object containing the last game info.
 	 * @throws ParseException When the date format is invalid. 
 	 * @throws NullPointerException When the value found is null. 
@@ -106,12 +107,12 @@ public class UserService
 
 		newGame.setId((long) gameInfo.getInt("ID"));
 		newGame.setTitle(gameInfo.getString("Title"));
-		newGame.setPublisher(gameInfo.getString("Publisher"));
-		newGame.setDeveloper(gameInfo.getString("Developer"));
-		newGame.setGenre(gameInfo.getString("Genre"));
-		newGame.setReleased(gameInfo.getString("Released"));
-		newGame.setTotalPlayers(gameInfo.getInt("NumDistinctPlayersCasual"));
-		newGame.setTotalPlayersHardcore(gameInfo.getInt("NumDistinctPlayersHardcore"));
+		newGame.setPublisher(JsonValues.getString(gameInfo, "Publisher"));
+		newGame.setDeveloper(JsonValues.getString(gameInfo, "Developer"));
+		newGame.setGenre(JsonValues.getString(gameInfo, "Genre"));
+		newGame.setReleased(JsonValues.getString(gameInfo, "Released"));
+		newGame.setTotalPlayers(JsonValues.getInt(gameInfo, "NumDistinctPlayersCasual"));
+		newGame.setTotalPlayersHardcore(JsonValues.getInt(gameInfo, "NumDistinctPlayersHardcore"));
 		newGame.setConsole(ConsoleFactory.create(gameInfo));
 		newGame.setImage(GameImageFactory.create(gameInfo));
 		newGame.setAchievements(

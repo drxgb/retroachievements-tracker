@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.drxgb</groupId>
 	<artifactId>ratracker</artifactId>
-	<version>1.1.0</version>
+	<version>1.1.2</version>
 	<name>XGB's RetroAchievements Tracker</name>
 	<description>Achievements tracker that consumes the RetroAchievements API.</description>
 

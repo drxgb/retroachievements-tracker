@@ -47,6 +47,7 @@ public final class UnlockedAchievementsController extends ListViewController<Ach
 				false
 		));
 	}
+	
 
 	@Override
 	protected List<Achievement> populateList()
@@ -60,6 +61,7 @@ public final class UnlockedAchievementsController extends ListViewController<Ach
 				.limit(count)
 				.collect(Collectors.toList());
 	}
+	
 
 	@Override
 	protected String onFieldWrite(String key, Achievement obj)

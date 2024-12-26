@@ -45,7 +45,7 @@ public class RATrackerApplication extends Application
 	/**
 	 * The current application version.
 	 */
-	public static final String VERSION = "1.1.1";
+	public static final String VERSION = "1.1.2";
 	
 	/**
 	 * The application author.
@@ -234,7 +234,7 @@ public class RATrackerApplication extends Application
 				stage.getIcons().add(new Image(icon));
 			stage.setResizable(false);
 			stage.setScene(scene);
-			stage.setTitle(NAME + " - " + VERSION);
+			stage.setTitle(NAME);
 			stage.setOnShown(mainController::onShown);
 			stage.setOnCloseRequest(mainController::onCloseRequest);
 			stage.setOnHiding(mainController::onCloseRequest);
